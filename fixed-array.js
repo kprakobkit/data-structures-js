@@ -1,23 +1,20 @@
 var FixedArray = function(size) {
   this.size = size;
- this.array = new Array(size);
+  this.array = new Array(size);
 };
 
-
 FixedArray.prototype.set = function(index, element) {
-  if (index < 0 || index >= this.size) {
-    throw new RangeError();
-  } else {
-    this.array[index] = element;
-  }
+  this.checkBound(index);
+  this.array[index] = element;
 };
 
 FixedArray.prototype.get = function(index) {
-  if (index < 0 || index >= this.size) {
-    throw new RangeError();
-  } else {
-    return this.array[index];
-  }
+  this.checkBound(index);
+  return this.array[index];
+};
+
+FixedArray.prototype.checkBound = function(index) {
+  if (index < 0 || index >= this.size) throw new RangeError();
 };
 
 module.exports = FixedArray;
